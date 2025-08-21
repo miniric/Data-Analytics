@@ -1,2 +1,4 @@
 .DS_Store
-.pth
+
+# Ignore PyTorch model files
+*.pth
