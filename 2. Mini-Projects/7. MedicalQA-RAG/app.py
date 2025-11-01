@@ -3,6 +3,8 @@ from core.report_generator import generate_report
 
 def main():
     print("醫療問答 RAG Demo")
+    print("以下回覆為 Demo 展示用，請勿視為正式醫療建議")
+    print("若有身體健康上的疑問，請務必諮詢專業醫療人員")
 
     qa_chain = build_rag_pipeline()
 
@@ -21,8 +23,7 @@ def main():
         report = generate_report(question, answer)
         print("\n")
         print("\n")
-        print("\n")
-        print("\n 衛教 demo 回報：")
+        print("\n 衛教摘要 demo：")
         print(report)
         print("\n" + "-"*50 + "\n")
         

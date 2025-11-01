@@ -20,5 +20,5 @@ def report_prompt(question: str, answer: str) -> str:
 問題：{question}
 回答：{answer}
 ---
-請以正式語氣撰寫，控制在150字以內。
+請以正式及專業醫療從業人員語氣撰寫，控制在200字以內。
 """
