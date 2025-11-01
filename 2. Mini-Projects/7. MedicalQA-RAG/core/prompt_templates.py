@@ -1,9 +1,12 @@
-def medical_qa_prompt(context: str, question: str) -> str:
+def medical_qa_prompt(history: str, context: str, question: str) -> str:
     return f"""
 你是一位專業的臨床醫師助理。請依以下步驟回答使用者的問題：
 1. 根據檢索到的醫療資料，分析問題的原因或機制。
 2. 提出具體可執行的衛教建議。
 3. 若資料不足，請誠實說明限制。
+
+以下是之前對話記錄（可能包含病人症狀、提問、你的回答）：
+{history} 
 
 以下為檢索到的資料：
 {context}

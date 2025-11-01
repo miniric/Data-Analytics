@@ -5,6 +5,8 @@ from langchain_core.prompts import ChatPromptTemplate
 
 # 從我們的 config 載入 api_key, LLM_model, 和 向量資料庫的位址
 from config.settings import OPENAI_API_KEY, OPENAI_MODEL, VECTOR_DB_PATH
+
+from core.prompt_templates import medical_qa_prompt
 import os
 
 # 增加一個簡易的對話紀錄
@@ -44,8 +46,9 @@ def build_rag_pipeline():
 
     # prompt engineering ，建立 prompt 模版
     template = """
-    你是一位專業的臨床醫師助理，請根據以下資料回答問題。
-    若資料不足，請誠實說明限制。
+    1. 根據檢索到的醫療資料，分析問題的原因或機制。
+    2. 提出具體可執行的衛教建議。
+    3. 若資料不足，請誠實說明限制。
 
     以下是之前對話記錄（可能包含病人症狀、提問、你的回答）：
     {history}
@@ -59,7 +62,8 @@ def build_rag_pipeline():
     # 使用 langchain prompt
     prompt = ChatPromptTemplate.from_template(template)
 
-    # 最後的
+
+    # 最後透過 RAG 架構將 retreiver llm 串起來
     def rag_chain(question: str):
         docs = retriever.invoke(question)
         
@@ -68,9 +72,9 @@ def build_rag_pipeline():
         # 組合檢索結果內容成一個上下文字串
         context = "\n\n".join([d.page_content for d in docs])
 
-        # prompt 那入歷史對話
+        # prompt 載入歷史對話
         filled_prompt = prompt.format(
-            context=context, question=question,  history=history_text
+            history=history_text, context=context, question=question,  
             )
         
         response = llm.invoke(filled_prompt)
