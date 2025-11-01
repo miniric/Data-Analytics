@@ -3,3 +3,4 @@
 # Ignore PyTorch model files
 *.pth
 *.env
+*pycache*
