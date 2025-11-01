@@ -1,9 +1,8 @@
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Qdrant
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
 
-# 從我們的 config 載入 api_key, LLM_model, 和 向量資料庫的位址
+# 從我們的 config 載入 api_key, LLM_model, 和 向量資料庫的位址,
 from config.settings import OPENAI_API_KEY, OPENAI_MODEL, VECTOR_DB_PATH
 
 from core.prompt_templates import medical_qa_prompt
