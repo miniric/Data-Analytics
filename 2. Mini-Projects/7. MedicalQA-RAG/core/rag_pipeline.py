@@ -44,24 +44,6 @@ def build_rag_pipeline():
     # 會將機率低的 tokens 進行機率補償)
     llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0.3)
 
-    # prompt engineering ，建立 prompt 模版
-    template = """
-    1. 根據檢索到的醫療資料，分析問題的原因或機制。
-    2. 提出具體可執行的衛教建議。
-    3. 若資料不足，請誠實說明限制。
-
-    以下是之前對話記錄（可能包含病人症狀、提問、你的回答）：
-    {history}
-
-    相關資料：
-    {context}
-
-    問題：{question}
-    """
-
-    # 使用 langchain prompt
-    prompt = ChatPromptTemplate.from_template(template)
-
 
     # 最後透過 RAG 架構將 retreiver llm 串起來
     def rag_chain(question: str):
@@ -73,7 +55,7 @@ def build_rag_pipeline():
         context = "\n\n".join([d.page_content for d in docs])
 
         # prompt 載入歷史對話
-        filled_prompt = prompt.format(
+        filled_prompt = medical_qa_prompt.format(
             history=history_text, context=context, question=question,  
             )
         
