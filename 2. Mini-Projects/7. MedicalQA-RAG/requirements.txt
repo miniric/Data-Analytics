@@ -1,0 +1,10 @@
+qdrant-client
+openai
+tiktoken
+streamlit
+python-dotenv
+langchain
+langchain_community
+langchain-core 
+langchain-openai 
+chromadb

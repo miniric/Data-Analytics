@@ -1,0 +1,5 @@
+.DS_Store
+
+# Ignore PyTorch model files
+*.pth
+*.env
