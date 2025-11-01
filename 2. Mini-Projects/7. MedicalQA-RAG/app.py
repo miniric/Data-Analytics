@@ -12,7 +12,7 @@ def main():
     while True:
         
         print("\n--------------------------------------------\n")
-        question = input("請輸入您的問題： 輸入 forget 遺忘對話紀錄，或輸入 exit / quit 離開: ")
+        question = input("請輸入您的問題： 輸入 forget 遺忘對話紀錄，\n 或輸入 exit / quit 離開: ")
         if question.lower() in ["exit", "quit"]:
             break
         
