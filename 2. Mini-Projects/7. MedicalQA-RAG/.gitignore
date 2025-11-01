@@ -1,6 +1,13 @@
+# Mac 系統檔
 .DS_Store
+
+# 虛擬環境
+*.env
 
 # Ignore PyTorch model files
 *.pth
-*.env
-*pycache*
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
