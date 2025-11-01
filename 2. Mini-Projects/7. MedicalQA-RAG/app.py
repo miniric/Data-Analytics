@@ -1,5 +1,6 @@
 from core.rag_pipeline import build_rag_pipeline
 from core.report_generator import generate_report
+from core import rag_pipeline
 
 def main():
     print("醫療問答 RAG Demo")
@@ -9,9 +10,17 @@ def main():
     qa_chain = build_rag_pipeline()
 
     while True:
-        question = input("請輸入您的問題： 或輸入 exit / quit 離開: ")
+        
+        print("\n--------------------------------------------\n")
+        question = input("請輸入您的問題： 或輸入 exit / quit 離開，輸入 forget 清除歷史對話記憶: ")
         if question.lower() in ["exit", "quit"]:
             break
+        
+        if question.lower() == "forget":
+            rag_pipeline.conversation_history.clear()
+            print("對話記憶已清除！")
+            print("\n--------------------------------------------\n")
+            continue
 
         answer = qa_chain(question)
         

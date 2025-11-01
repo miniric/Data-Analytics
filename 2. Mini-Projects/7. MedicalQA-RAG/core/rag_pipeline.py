@@ -7,6 +7,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from config.settings import OPENAI_API_KEY, OPENAI_MODEL, VECTOR_DB_PATH
 import os
 
+# 增加一個簡易的對話紀錄
+conversation_history = []
 
 def build_rag_pipeline():
     os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
@@ -45,6 +47,9 @@ def build_rag_pipeline():
     你是一位專業的臨床醫師助理，請根據以下資料回答問題。
     若資料不足，請誠實說明限制。
 
+    以下是之前對話記錄（可能包含病人症狀、提問、你的回答）：
+    {history}
+
     相關資料：
     {context}
 
@@ -57,10 +62,24 @@ def build_rag_pipeline():
     # 最後的
     def rag_chain(question: str):
         docs = retriever.invoke(question)
+        
+        # 增加歷史對話記憶
+        history_text = "\n".join(conversation_history[-10:])
         # 組合檢索結果內容成一個上下文字串
         context = "\n\n".join([d.page_content for d in docs])
-        filled_prompt = prompt.format(context=context, question=question)
+
+        # prompt 那入歷史對話
+        filled_prompt = prompt.format(
+            context=context, question=question,  history=history_text
+            )
+        
         response = llm.invoke(filled_prompt)
-        return response.content
+        answer = response.content
+        
+        # 新增對話去對話歷史紀錄
+        conversation_history.append(f"病人：{question}")
+        conversation_history.append(f"助理：{answer}")
+
+        return answer
     
     return rag_chain
