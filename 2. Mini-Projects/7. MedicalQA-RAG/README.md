@@ -2,7 +2,7 @@
 
 這是一個以 **大語言模型 (LLM)** 為核心的簡易醫療應用 Demo，展示：
 - RAG (Retrieval-Augmented Generation)
-- - LangChain + Qdrant 整合
+- LangChain + Qdrant 整合
 - 自動衛教報告摘要生成
 
 ## 主要特色
