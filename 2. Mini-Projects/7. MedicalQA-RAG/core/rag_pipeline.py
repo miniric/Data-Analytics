@@ -17,7 +17,6 @@ def build_rag_pipeline():
     # 透過 loader 載入預先存好的正確醫療資訊    
     loader = TextLoader("data/medical_facts.txt")
     docs = loader.load()
-
     # 資訊向量化，使用openAI的模型將文字向量化
     embeddings = OpenAIEmbeddings()
 
@@ -37,7 +36,6 @@ def build_rag_pipeline():
     # 參數
     # search_kwargs, 找出最接近的 x 筆資料
     retriever = db.as_retriever(search_kwargs={"k": 3})
-
     # llm 指定 settings 裡面的 OpenAI model, 溫度控制回答的準確性 (t越高, 越容易即興發揮)
     # (t這面可以想像在最後一層的 softmax 裡面，增加一個參數t 去調整他機率分布的值, 當t越高時
     # 會將機率低的 tokens 進行機率補償)
@@ -62,8 +60,8 @@ def build_rag_pipeline():
         answer = response.content
         
         # 新增對話去對話歷史紀錄
-        conversation_history.append(f"病人：{question}")
-        conversation_history.append(f"助理：{answer}")
+        conversation_history.append(f"病人輸入：{question}")
+        conversation_history.append(f"虛擬助理回答：{answer}")
 
         return answer
     
