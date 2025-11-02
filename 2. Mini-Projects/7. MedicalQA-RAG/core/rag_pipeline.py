@@ -48,7 +48,7 @@ def build_rag_pipeline():
     def rag_chain(question: str):
         docs = retriever.invoke(question)
         
-        # 增加歷史對話記憶
+        # 增加歷史對話記憶, 使用 slice 避免使用過多歷史對話紀錄導致 token 爆炸
         history_text = "\n".join(conversation_history[-10:])
         # 組合檢索結果內容成一個上下文字串
         context = "\n\n".join([d.page_content for d in docs])
