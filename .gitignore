@@ -1,12 +1,23 @@
+# macOS system file
 .DS_Store
 
-# Ignore PyTorch model files
+# PyTorch model files
 *.pth
-*.env
-*pycache*
 
+# Environment files
+*.env
+
+# Virtual environments
 .venv/
 venv/
 env/
+
+# Python cache
 __pycache__/
 *.pyc
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
