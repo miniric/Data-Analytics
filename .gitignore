@@ -4,3 +4,9 @@
 *.pth
 *.env
 *pycache*
+
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
