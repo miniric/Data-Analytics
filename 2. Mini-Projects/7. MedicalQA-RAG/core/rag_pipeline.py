@@ -18,7 +18,7 @@ conversation_history = []
 
 
 def build_rag_pipeline():
-    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY # type: ignore
 
     # 透過 loader 載入預先存好的正確醫療資訊
     local_loader = TextLoader("data/medical_facts.txt", encoding="utf-8")
