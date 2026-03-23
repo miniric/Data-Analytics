@@ -1,4 +1,4 @@
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI # type: ignore
 from core.prompt_templates import report_prompt
 
 from config.settings import OPENAI_MODEL, OPENAI_API_KEY

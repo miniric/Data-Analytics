@@ -2,6 +2,11 @@ from core.rag_pipeline import build_rag_pipeline
 from core.report_generator import generate_report
 from core import rag_pipeline
 
+from dotenv import load_dotenv
+import os
+# 在任何讀環境變數之前呼叫
+load_dotenv()
+
 def main():
     print("醫療問答 RAG Demo")
     print("以下回覆為 Demo 展示用，請勿視為正式醫療建議")
