@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (large files)
+*.csv
+*.pth
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets / env
+.env
+.env.*
+*.key
+credentials.*
+
+# Checkpoints (tracked selectively if needed)
+checkpoints/
+
+# Logs
+*.log
+logs/
+wandb/
+runs/
+
+# Data directory (symlinks to large files)
+data/
